@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>Github Profile Finder</title>
+  </head>
+  <body>
+    <main class="container">
+      <div class="heading-container">
+        <h1>Find Any <span class="bold">Developer Profile.</span></h1>
+      </div>
+      <div class="search-container">
+        <form method="post">
+          <input
+            type="text"
+            name="search"
+            class="search"
+            placeholder="Search by Username e.g., rajmanna-dev"
+            required
+          />
+          <button class="btn">Search</button>
+        </form>
+      </div>
+      <% if (locals.content) { %>
+      <section class="result-container">
+        <div class="card-container">
+          <figure>
+            <img
+              class="avatar"
+              src="<%= content.avatar %>"
+              alt="Developer's profile picture"
+            />
+          </figure>
+          <div class="card-content">
+            <a href="<%= content.url %>"><%= content.name %></a>
+            <p><%= content.bio %></p>
+            <div class="meta-content">
+              <ul>
+                <li class="bold"><%= content.followers %> Followers</li>
+                <li class="bold"><%= content.following %> Following</li>
+                <li class="bold"><%= content.repos %> Repos</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      <% } %> <% if (locals.error) { %>
+      <section class="error">
+        <img src="/img/error.png" class="error-logo" alt="Error" />
+        <%= error %>
+      </section>
+      <% } %>
+    </main>
+    <footer>
+      GitHub Profile Finder &copy; Made with
+      <a href="https://api.github.com" target="_blank">GitHub API</a>
+    </footer>
+  </body>
+</html>
